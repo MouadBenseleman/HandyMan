@@ -6,24 +6,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_DB: django_db
-          POSTGRES_USER: user
-          POSTGRES_PASSWORD: password
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd "pg_isready -U ${{ secrets.POSTGRES_USER }}" 
-          --health-interval 10s 
-          --health-timeout 5s 
-          --health-retries 5
-
-    env:
-      DATABASE_URL: postgres://user:password@localhost:5432/django_db
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -39,7 +21,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run migrations
-      run: python manage.py migrate
+      run: python manage.py migrate --noinput
 
     - name: Run tests
       run: python manage.py test
