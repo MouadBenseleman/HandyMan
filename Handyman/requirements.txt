@@ -1,5 +1,6 @@
 certifi @ file:///private/tmp/python-certifi-20240306-6664-cot6il/certifi-2024.2.2
 contourpy==1.2.0
+Django==3.2.12
 cycler==0.12.1
 distlib==0.3.7
 filelock==3.13.1
